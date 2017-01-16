@@ -17,6 +17,7 @@
 
 # Distribution / packaging
 *.Python
+*include/
 *env/
 *bin/
 *build/
