@@ -38,6 +38,9 @@
 *pip-delete-this-directory.txt
 *pip-selfcheck.json
 
+#config
+*config.py
+
 # Unit test / coverage reports
 *htmlcov/
 *.tox/
