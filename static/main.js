@@ -10,8 +10,11 @@
     $scope.submitButtonText = 'Submit';
     $scope.loading = false;
     $scope.urlerror = false;
+    $scope.showSearchResults = false;
     $scope.countDirection = true //high to low;
     $scope.alphabeticalDirection = true; //A-Z;
+    $scope.wordToSearch = null;
+    $scope.wordSearchFreq = 0;
 
     $scope.getResults = function() {
 
@@ -34,6 +37,26 @@
           $log.log(error);
         });
 
+    };
+
+    $scope.showSearch = function(){
+      if($scope.wordToSearch){
+        $scope.showSearchResults = true;
+        if($scope.wordcounts && $scope.wordcounts.length > 0){
+          var found = false;
+          $scope.wordcounts.forEach(function(element) {
+            if(element[0] == $scope.wordToSearch){
+              $scope.wordSearchFreq = element[1];
+              found = true;
+            }
+          });
+          if(!found){
+            $scope.wordSearchFreq = 0;
+          }
+        }
+      }
+      console.log($scope.wordToSearch);
+      console.log($scope.wordSearchFreq);
     };
 
     $scope.sortByResultsByCount = function(){

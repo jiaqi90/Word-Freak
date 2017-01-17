@@ -86,6 +86,7 @@ def get_counts():
     return job.get_id()
 
 
+#endpoint for retrieving the results
 @app.route("/results/<job_key>", methods=['GET'])
 def get_results(job_key):
 
@@ -100,7 +101,7 @@ def get_results(job_key):
         )[:10]
         return jsonify(results)
     else:
-        return "Nay!", 202
+        return "Failure!", 202
 
 
 if __name__ == '__main__':
