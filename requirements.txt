@@ -59,7 +59,9 @@ pyparsing==2.0.1
 python-dateutil==1.5
 python-editor==1.0.3
 pytz==2013.7
+redis==2.10.5
 requests==2.9.1
+rq==0.5.6
 scipy==0.13.0b1
 six==1.4.1
 SQLAlchemy==1.1.4
