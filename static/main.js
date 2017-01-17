@@ -10,6 +10,8 @@
     $scope.submitButtonText = 'Submit';
     $scope.loading = false;
     $scope.urlerror = false;
+    $scope.countDirection = true //high to low;
+    $scope.alphabeticalDirection = true; //A-Z;
 
     $scope.getResults = function() {
 
@@ -33,6 +35,70 @@
         });
 
     };
+
+    $scope.sortByResultsByCount = function(){
+      if($scope.wordcounts.length > 0){
+        //high to low sorted then change to low to high
+        if($scope.countDirection){
+          $scope.wordcounts = $scope.wordcounts.sort(sortIncreasing);
+        }
+        //low to high sorted, change to high to low
+        else{
+          $scope.wordcounts = $scope.wordcounts.sort(sortDecreasing);
+        }
+        $scope.countDirection = !$scope.countDirection;
+      }
+    }
+
+    $scope.sortByResultsName = function(){
+      if($scope.wordcounts.length > 0){
+        //current A-Z, go from Z-A
+        if($scope.alphabeticalDirection){
+          $scope.wordcounts = $scope.wordcounts.sort(sortAlphabetical);
+        }
+        //current Z-A, go from A-Z
+        else{
+          $scope.wordcounts = $scope.wordcounts.sort(sortReverseAlphabetical);
+        }
+        $scope.alphabeticalDirection = !$scope.alphabeticalDirection;
+      }
+    }
+
+    function sortIncreasing(a, b) {
+      if (a[1] === b[1]) {
+          return 0;
+      }
+      else {
+          return (a[1] < b[1]) ? -1 : 1;
+      }
+    }
+
+    function sortDecreasing(a, b) {
+      if (a[1] === b[1]) {
+          return 0;
+      }
+      else {
+          return (a[1] > b[1]) ? -1 : 1;
+      }
+    }
+
+    function sortAlphabetical(a, b) {
+      if (a[0] === b[0]) {
+          return 0;
+      }
+      else {
+          return (a[0] < b[0]) ? -1 : 1;
+      }
+    }
+
+    function sortReverseAlphabetical(a, b) {
+      if (a[0] === b[0]) {
+          return 0;
+      }
+      else {
+          return (a[0] > b[0]) ? -1 : 1;
+      }
+    }
 
     function getWordCount(jobID) {
 
